@@ -139,3 +139,6 @@ class Cliente{
     }
 }
 
+public class Ejercicio2 {
+    
+}
