@@ -14,6 +14,12 @@ class Persona{
         this.fechaNac = unaFecha;
         this.sexo = unSexo;
     }
+
+    public String toString(){
+        String cadena;
+        cadena = "dni: "+this.dni+" - Nombre: "+this.nombre+" - Fecha Nacimiento: "+this.fechaNac.toString()+" - Sexo: "+this.sexo;
+        return cadena;
+    }
 }
 
 class Empleado extends Persona{
@@ -43,6 +49,15 @@ class Empleado extends Persona{
 
         return mayor;
     }
+
+    public String toString(){
+        String cadena;
+
+        cadena = super.toString()+"\n";
+        cadena = cadena + "Legajo: "+this.legajo+" - Antiguedad: "+this.antiguedad+" - Salario: "+this.salario;
+        return cadena;
+        
+    }
 }
 
 
@@ -70,6 +85,15 @@ class Administrativo extends Empleado{
         salario = super.calculoSalario() + plusCategoria;
 
         return salario;
+    }
+
+    public String toString(){
+        String cadena;
+
+        cadena = super.toString()+"\n";
+        cadena = cadena + "Empleado administrativo  - categoria: "+this.categoria;
+
+        return cadena;
     }
 }
 
@@ -101,6 +125,13 @@ class Tecnico extends Empleado{
         return salario;
     }
 
+    public String toString(){
+        String cadena;
+        cadena = super.toString()+"\n";
+        cadena = cadena + "Empleado tecnico - Titulo: "+this.titulo+" - Anio titulo: "+this.anioTitulo;
+        return cadena;
+    }
+
 }
 
 class Empresa{
@@ -115,7 +146,7 @@ class Empresa{
     }
 
     public ArrayList<Empleado> mayorADiez(){
-        ArrayList<Empleado> coleccion = new ArrayList<Empleado>;
+        ArrayList<Empleado> coleccion = new ArrayList<Empleado>();
         int indice = 0;
         Empleado elem;
         int tamanio = this.colEmpleados.size();
