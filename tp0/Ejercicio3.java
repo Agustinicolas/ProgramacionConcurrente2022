@@ -3,10 +3,10 @@ import java.time.*;
 import java.util.*;
 
 class Persona{
-    private int dni;
-    private String nombre;
-    private LocalDate fechaNac;
-    private char sexo;
+    protected int dni;
+    protected String nombre;
+    protected LocalDate fechaNac;
+    protected char sexo;
 
     public Persona(int dni, String unNombre, LocalDate unaFecha, char unSexo){
         this.dni = dni;
@@ -23,9 +23,9 @@ class Persona{
 }
 
 class Empleado extends Persona{
-    private String legajo;
-    private int antiguedad;
-    private double salario;
+    protected String legajo;
+    protected int antiguedad;
+    protected double salario;
 
     public Empleado(int dni, String unNombre, LocalDate unaFecha, char unSexo, String unLegajo, int unaAntiguedad){
         super(dni, unNombre, unaFecha, unSexo);
@@ -57,6 +57,18 @@ class Empleado extends Persona{
         cadena = cadena + "Legajo: "+this.legajo+" - Antiguedad: "+this.antiguedad+" - Salario: "+this.salario;
         return cadena;
         
+    }
+
+    public String cobroMensual(){
+        String cadena;
+        cadena = "Nombre: "+this.nombre+" - Salario: "+this.calculoSalario();
+
+        return cadena;
+    }
+
+
+    public boolean tieneTitulo(String string){
+        return false;
     }
 }
 
@@ -132,6 +144,14 @@ class Tecnico extends Empleado{
         return cadena;
     }
 
+    public boolean tieneTitulo(String string){
+        boolean coincide;
+
+        coincide = string.equalsIgnoreCase(this.titulo);
+        return coincide;
+        
+    }
+
 }
 
 class Empresa{
@@ -163,7 +183,27 @@ class Empresa{
 
         return coleccion;
 
+    }
 
+
+    public ArrayList<String> cobroMensualEmpleado(){
+        ArrayList<String> coleccion = new ArrayList<String>();
+        for (Empleado emp: colEmpleados)
+            coleccion.add(emp.cobroMensual());
+        return coleccion;
+    }
+
+
+    public ArrayList<Empleado> coldeTitulo(String titulo){
+        ArrayList<Empleado> col = new ArrayList<Empleado>();
+        boolean coincide;
+        for(Empleado emp: this.colEmpleados){
+            coincide = emp.tieneTitulo(titulo);
+            if(coincide)
+                col.add(emp);
+        }
+        // COMO REORDENAR COLECCION?
+        return col;
     }
     
 }
