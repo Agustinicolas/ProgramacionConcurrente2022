@@ -12,6 +12,10 @@ public class RunnableEjemplo implements Runnable {
         return this.msj;
     }
     
+    public void start(){
+        this.run();
+    }
+
     public void run(){ //explicitar un metodo run()
         for (int i = 0; i < 10; i++){
             System.out.println(i + " " + this.getMsj());
@@ -20,8 +24,13 @@ public class RunnableEjemplo implements Runnable {
     }
 
     public static void main(String[] args){
-        new ThreadEjemplo("Maria Jose").start();
-        new ThreadEjemplo("Jose Maria").start();
+        RunnableEjemplo r1 = new RunnableEjemplo("Maria Jose");
+        RunnableEjemplo r2 = new RunnableEjemplo("Jose Maria");
+
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r2);
+        t1.start();
+        t2.start();
         System.out.println("Termina thread main");
     }
 
