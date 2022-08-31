@@ -24,12 +24,12 @@ public class RunnableEjemplo implements Runnable {
     }
 
     public static void main(String[] args){
-        RunnableEjemplo r1 = new RunnableEjemplo("Maria Jose");
+        RunnableEjemplo r1 = new RunnableEjemplo("Maria Jose"); //crear objetos
         RunnableEjemplo r2 = new RunnableEjemplo("Jose Maria");
 
-        Thread t1 = new Thread(r1);
+        Thread t1 = new Thread(r1); //crear hilos y "asignarlos" a los objetos 
         Thread t2 = new Thread(r2);
-        t1.start();
+        t1.start(); //comenzar los hilos
         t2.start();
         System.out.println("Termina thread main");
     }
